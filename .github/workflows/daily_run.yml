@@ -1,0 +1,30 @@
+name: Run AAC Script Daily
+
+on:
+  schedule:
+    # Schedule to run daily at 1:00 AM UTC (11:30 AM ACDT)
+    - cron: '0 1 * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install selenium selenium-wire
+
+      # Step 4: Run the script
+      - name: Run AAC Script
+        run: |
+          python3 aac_urls_full_auto.py
