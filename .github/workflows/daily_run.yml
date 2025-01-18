@@ -4,6 +4,7 @@ on:
   schedule:
     # Schedule to run daily at 1:00 AM UTC (11:30 AM ACDT)
     - cron: '0 1 * * *'
+      workflow_dispatch: # Enables manual trigger
 
 jobs:
   run-script:
