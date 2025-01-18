@@ -20,10 +20,12 @@ jobs:
         with:
           python-version: 3.13
 
-      # Step 3: Install dependencies
+      # Step 3: Install dependencies in a virtual environment
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
+          python3 -m venv venv  # Create virtual environment
+          source venv/bin/activate  # Activate virtual environment
           python3 -m pip install selenium selenium-wire requests
           python3 -m pip show requests  # Show requests details to verify it's installed
 
@@ -32,9 +34,10 @@ jobs:
         run: |
           which python3
           python3 --version
+          which pip  # Check if pip is correctly linked to virtualenv
 
       # Step 5: Run the script
       - name: Run AAC Script
         run: |
-          source venv/bin/activate  # Activate the virtual environment
+          source venv/bin/activate  # Activate virtual environment
           python3 aac_urls_full_auto.py
